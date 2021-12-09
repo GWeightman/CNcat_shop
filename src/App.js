@@ -1,31 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const getpic = () => {
-    const response = fetch(`https://api.thecatapi.com/v1/images/search&api_key=7069bf1c-23bc-4ed2-925d-3c546afb9260`)
-    const data = response.json()
-    setProfile({pic: data[0].url})
+  const faker = require('faker')
+  
+
+  const [catpic, setCatpic] = useState([""])
+  const [catName, SetCatname] = useState([""])
+  const [catprice, SetCatprice] = useState([""])
+
+  const getpic = async () => {
+    const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10`)
+    const data = await response.json()
+    setCatpic(data)
+    for(let i=0; i<catpic.length; i++){
+      const name = faker.name.firstName()
+      let storedName = [...catName]
+      storedName.push(name)
+      SetCatname(storedName)
+    }
+    for(let i=0; i<catpic.length; i++){
+      const price = faker.commerce.price()
+      let storedPrice = [...catprice]
+      storedPrice.push(price)
+      SetCatprice(storedPrice)
+    }
   }
+
   
-  const [profile, setProfile] = useState([
-    {name: "Jordan", age: 6, price: "£200" , pic:{getpic}},
-    {name: "Wayne", age: 8, price: "£125", pic:{getpic}}, 
-    {name: "Gordon", age: 1, price: "£170", pic:{getpic}}, 
-    {name: "Jeff", age: 3, price: "£105", pic:{getpic}}, 
-    {name: "Simon", age: 9, price: "£180", pic:{getpic}},
-  ])
-  
+  useEffect(()=> {
+    getpic()
+  }, [])
+
+  if(!catpic){
+    return null
+  }
   return (
     <div id='display'>
       <h1>Cat Shop</h1>
-      {profile.map((profile) => {
+      {catpic.map((cat) => {
         return(
           <div className="card">
-            <img src={profile.pic} alt='no pic'/>
-            <p>{profile.name}</p>
-            <p>{profile.age}</p>
-            <p>{profile.price}</p>
+            <img src={cat.url} alt='no pic'/>
+            <p>{catName}</p>
+            <p>£{catprice}</p>
             <button>+</button>
           </div>
         )

@@ -16,16 +16,23 @@ h1{
   border: black solid 2px;
   text-align: center;
   width: 18%;
+  height: 300px;
+  margin: 5px;
 }
 
 img{
   width: 100%;
+  height: 75%;
 }
 
 p{
   width: 40%;
+  height: 10%;
+  margin: 2px;
 }
 
 button{
   width: 40%;
+  height: 10%;
+  margin: 5px;
 }
