@@ -15,6 +15,7 @@ const Basket = ({to_buy, setTo_buy}) =>{
                     </div>
                 )
             })}
+            <p>{to_buy.price}</p>
         </div>
     )
 }
