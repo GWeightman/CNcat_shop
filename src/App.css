@@ -1,4 +1,4 @@
-#display{
+.display{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -26,24 +26,24 @@ img{
   height: 75%;
 }
 
-#para{
+.para{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 50%;
   height: 20%;
   margin: 5px;
 }
 
 p{
-  width: 49%;
+  width: 100%;
   height: auto;
   margin: 0;
 }
 
 button{
   width: 30%;
-  height: 70%;
+  height: 20%;
   margin: 5px;
 }

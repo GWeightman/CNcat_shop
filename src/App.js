@@ -12,15 +12,39 @@ import {
 
 
 function App() {
-  
+  const faker = require('faker')  
 
   const [catData, setCatData] = useState([""])
   const [to_buy, setTo_buy] = useState([])
+  const [loading, setLoading] = useState(false)
+    const [error, setError] = useState({
+      error: false,
+      message: ""
+    })
 
   const getpic = async () => {
-    const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10`)
-    const data = await response.json()
-    setCatData(data)
+    try {
+      setLoading(true)
+      const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10`)
+      if (response.status !== 200){
+        throw new Error("Not Working")
+      }
+      const data = await response.json()
+      const newData = await fakerinfo(data)
+      setCatData(newData)
+      setLoading(false)
+      } catch (error){
+        setError({error: true, message: error.message})
+      }
+    }
+  
+
+  const fakerinfo = (data) =>{
+    {data.map((data) => {
+      data.name = faker.name.firstName()
+      data.price = faker.commerce.price()
+    })}
+    return data
   }
 
   useEffect(()=> {

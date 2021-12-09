@@ -5,18 +5,24 @@ const Basket = ({to_buy, setTo_buy}) =>{
         storedTo_buy.splice(index, 1)
         setTo_buy(storedTo_buy)
     }
+        
     return(
-        <div> 
+        <div className="display"> 
             {to_buy.map((tobuy, index) => {
                 return(
-                    <div>
-                        <p>{tobuy}</p>
+                    <div className="card">
+                        <img src={tobuy.pic} alt='no pic'/>
+                        <div className='para'>
+                            <p>{tobuy.name}</p>
+                            <p>£{tobuy.price}</p>
+                        </div>
                         <button onClick={()=>removeHandler(index)}>remove</button>
                     </div>
                 )
+                
             })}
-            <p>{to_buy.price}</p>
         </div>
+        
     )
 }
 
