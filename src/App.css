@@ -7,6 +7,7 @@
 h1{
   text-align: center;
   width: 100%;
+  margin: 5px;
 }
 
 .card{
@@ -26,19 +27,23 @@ img{
 }
 
 #para{
-  width: 40%;
-  height: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 20%;
   margin: 5px;
 }
 
 p{
-  width: 100%;
-  height: 100%;
+  width: 49%;
+  height: auto;
   margin: 0;
 }
 
 button{
-  width: 40%;
-  height: 10%;
+  width: 30%;
+  height: 70%;
   margin: 5px;
 }

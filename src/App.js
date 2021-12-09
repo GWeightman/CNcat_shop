@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
-import Cat_shop from './components/cat_shop';
+import Catshop from './components/cat_shop';
+import Basket from './components/basket';
+import { 
+  BrowserRouter as Router, 
+  Routes, 
+  Route, 
+  Link 
+} from "react-router-dom"
+
 
 function App() {
   
 
   const [catData, setCatData] = useState([""])
+  const [to_buy, setTo_buy] = useState([])
 
   const getpic = async () => {
     const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10`)
@@ -21,9 +31,28 @@ function App() {
     return null
   }
   return (
-    <div>
-      <Cat_shop catData={catData}/>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/basket">Basket</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div>  
+        <Routes>
+          <Route path="/basket" element={<Basket to_buy={to_buy} setTo_buy={setTo_buy}/>}/>
+          <Route path="/" element={<Catshop catData={catData} to_buy={to_buy} setTo_buy={setTo_buy}/>}/>
+        </Routes>
+      </div>
+    </Router>
+   
   )
 }
   

@@ -1,7 +1,7 @@
 import Faker from "./faker"
 import './../App.css';
 
-const Cat_shop = ({catData})=> {
+const Catshop = ({catData, to_buy, setTo_buy} )=> {
     return(
         <div id='display'>
             <h1>Cat Shop</h1>
@@ -9,8 +9,7 @@ const Cat_shop = ({catData})=> {
                 return(
                     <div className="card">
                         <img src={cat.url} alt='no pic'/>
-                        <Faker/>
-                        <button>+</button>
+                        <Faker to_buy={to_buy} setTo_buy={setTo_buy}/>
                     </div>
                 )
             })}
@@ -18,4 +17,4 @@ const Cat_shop = ({catData})=> {
     )
 }
 
-export default Cat_shop
+export default Catshop
