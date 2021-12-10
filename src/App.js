@@ -13,10 +13,11 @@ import {
 
 function App() {
   const faker = require('faker')  
-
+  const [total,setTotal] = useState(0.00)
   const [catData, setCatData] = useState([""])
   const [to_buy, setTo_buy] = useState([])
   const [loading, setLoading] = useState(false)
+
     const [error, setError] = useState({
       error: false,
       message: ""
@@ -51,6 +52,10 @@ function App() {
     getpic()
   }, [])
 
+  // for (let index = 0; index < to_buy.length; index++) {
+  //     setTotal(total + to_buy[index].price) 
+  // }
+
   if(!catData){
     return null
   }
@@ -71,7 +76,7 @@ function App() {
 
       <div>  
         <Routes>
-          <Route path="/basket" element={<Basket to_buy={to_buy} setTo_buy={setTo_buy}/>}/>
+          <Route path="/basket" element={<Basket to_buy={to_buy} setTo_buy={setTo_buy} total={total} setTotal={setTotal} />}/>
           <Route path="/" element={<Catshop catData={catData} to_buy={to_buy} setTo_buy={setTo_buy}/>}/>
         </Routes>
       </div>

@@ -22,7 +22,7 @@ const Catshop = ({catData, to_buy, setTo_buy} )=> {
                             <p>{cat.name}</p>
                             <p>£{cat.price}</p>
                         </div>
-                        <button onClick={() => addHandler(cat)}>Add</button>
+                        <button onClick={() => addHandler(cat)} data-testid="button">Add</button>
                     </div>
                 )
             })}

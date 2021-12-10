@@ -1,10 +1,20 @@
-const Basket = ({to_buy, setTo_buy}) =>{
+const Basket = ({to_buy, setTo_buy, total ,setTotal}) =>{
     
     const removeHandler = (index) => {
         let storedTo_buy = [...to_buy]
         storedTo_buy.splice(index, 1)
         setTo_buy(storedTo_buy)
     }
+    const mytotal = () => {
+        let num = 0
+        for (let index = 0; index < to_buy.length; index++) {
+            num = num + parseFloat(to_buy[index].price);
+      }
+      return num
+    }
+
+    setTotal(mytotal)
+
         
     return(
         <div className="display"> 
@@ -21,6 +31,8 @@ const Basket = ({to_buy, setTo_buy}) =>{
                 )
                 
             })}
+            <h5>Total to pay = £{total}</h5>
+
         </div>
         
     )
